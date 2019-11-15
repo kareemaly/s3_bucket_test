@@ -15,7 +15,12 @@ pipeline {
         }
         stage('Preparation') {
             steps {
-                echo 'Testing..'
+                sh """
+                    cd terraform
+                    terraform init
+                    terraform plan -out=s3.plan
+                    terraform apply s3.plan
+                """
             }
         }
         stage('Deployment') {
