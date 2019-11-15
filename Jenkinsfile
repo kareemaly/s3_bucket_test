@@ -15,18 +15,12 @@ pipeline {
         }
         stage('Preparation') {
             steps {
-                sh """
-                    cd terraform
-                    terraform init
-                    terraform plan -out=s3.plan
-                    terraform apply s3.plan
-                """
             }
         }
         stage('Deployment') {
             steps {
                 sh """
-                    aws s3 cp ../v1.0.0 s3://kareem-test-s3-bucket
+                    aws s3 cp ../v1.0.0 s3://kareem-test-s3-bucket/v1.0.0
                 """
             }
         }
