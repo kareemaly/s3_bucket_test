@@ -21,7 +21,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh """
-                    aws s3 cp ../v1.0.0 s3://kareem-test-s3-bucket/v1.0.0 --recursive
+                    aws s3 cp ./v1.0.0 s3://kareem-test-s3-bucket/v1.0.0 --recursive
                 """
             }
         }
