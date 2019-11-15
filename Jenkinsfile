@@ -25,7 +25,9 @@ pipeline {
         }
         stage('Deployment') {
             steps {
-                echo 'Deploying....'
+                sh """
+                    aws s3 cp ../v1.0.0 s3://kareem-test-s3-bucket
+                """
             }
         }
     }
